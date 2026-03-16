@@ -1,0 +1,241 @@
+# ══════════════════════════════════════════════════
+# ECH-Workerd - Deployment Parameters (Setup Wizard)
+# ══════════════════════════════════════════════════
+
+params:
+  # ══════════════════════════════════════════════
+  # 必填参数
+  # ══════════════════════════════════════════════
+  - id: proxy_server
+    type: string
+    name: "Proxy Server"
+    description: "Backend proxy server address (host:port[/path])"
+    default_value: ""
+    optional: false
+    placeholder: "example.com:443"
+
+  # ══════════════════════════════════════════════
+  # 身份验证
+  # ══════════════════════════════════════════════
+  - id: proxy_token
+    type: string
+    name: "Proxy Token"
+    description: "Authentication token for the proxy server"
+    default_value: ""
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # SOCKS5 鉴权
+  # ══════════════════════════════════════════════
+  - id: proxy_socks5_user
+    type: string
+    name: "SOCKS5 Username"
+    description: "SOCKS5 proxy username (optional)"
+    default_value: ""
+    optional: true
+
+  - id: proxy_socks5_pass
+    type: string
+    name: "SOCKS5 Password"
+    description: "SOCKS5 proxy password (requires username)"
+    default_value: ""
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # 网络配置
+  # ══════════════════════════════════════════════
+  - id: proxy_server_ip
+    type: string
+    name: "Proxy Server IP"
+    description: "Specify server IP directly to skip DNS resolution"
+    default_value: "saas.sin.fan"
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # ECH 配置
+  # ══════════════════════════════════════════════
+  - id: proxy_dns
+    type: string
+    name: "DNS Server"
+    description: "DoH server for ECH queries"
+    default_value: "dns.alidns.com/dns-query"
+    optional: true
+
+  - id: proxy_ech_domain
+    type: string
+    name: "ECH Domain"
+    description: "ECH (Encrypted Client Hello) query domain"
+    default_value: "cloudflare-ech.com"
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # 分流配置
+  # ══════════════════════════════════════════════
+  - id: proxy_routing
+    type: string
+    name: "Routing Mode"
+    description: "Traffic routing mode: global / bypass_cn / none"
+    default_value: "global"
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # IP 列表配置
+  # ══════════════════════════════════════════════
+  - id: proxy_ipv4_file
+    type: string
+    name: "IPv4 List File"
+    description: "Custom IPv4 list file path (leave empty for default)"
+    default_value: ""
+    optional: true
+    placeholder: "/app/data/ipv4.txt"
+
+  - id: proxy_ipv6_file
+    type: string
+    name: "IPv6 List File"
+    description: "Custom IPv6 list file path (leave empty for default)"
+    default_value: ""
+    optional: true
+    placeholder: "/app/data/ipv6.txt"
+
+  - id: proxy_ipv4_url
+    type: string
+    name: "IPv4 List URL"
+    description: "Custom IPv4 list download URL (leave empty for default)"
+    default_value: ""
+    optional: true
+
+  - id: proxy_ipv6_url
+    type: string
+    name: "IPv6 List URL"
+    description: "Custom IPv6 list download URL (leave empty for default)"
+    default_value: ""
+    optional: true
+
+  - id: proxy_ip_auto_update
+    type: bool
+    name: "Auto Update IP List"
+    description: "Force re-download IP list on every startup"
+    default_value: false
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # GeoIP 数据库配置
+  # ══════════════════════════════════════════════
+  - id: proxy_geoip_enabled
+    type: bool
+    name: "Enable GeoIP"
+    description: "Enable GeoIP database (works with IP list)"
+    default_value: true
+    optional: true
+
+  - id: proxy_geoip_file
+    type: string
+    name: "GeoIP File Path"
+    description: "GeoIP database path (leave empty for default)"
+    default_value: ""
+    optional: true
+    placeholder: "/app/data/GeoLite2-City.mmdb"
+
+  - id: proxy_geoip_url
+    type: string
+    name: "GeoIP Download URL"
+    description: "GeoIP database download URL (leave empty for auto)"
+    default_value: ""
+    optional: true
+
+  # ══════════════════════════════════════════════
+  # 日志配置
+  # ══════════════════════════════════════════════
+  - id: proxy_log_level
+    type: string
+    name: "Log Level"
+    description: "Logging verbosity: debug / info / warn / error"
+    default_value: "info"
+    optional: true
+
+  - id: proxy_log_max_mb
+    type: string
+    name: "Log Max Size (MB)"
+    description: "Maximum size of a single log file in MB"
+    default_value: "100"
+    optional: true
+
+  - id: proxy_log_backup
+    type: string
+    name: "Log Backup Count"
+    description: "Number of old log files to keep"
+    default_value: "7"
+    optional: true
+
+  - id: proxy_log_compress
+    type: bool
+    name: "Compress Old Logs"
+    description: "Compress old log files to save space"
+    default_value: true
+    optional: true
+
+# ══════════════════════════════════════════════════
+# Localization (Chinese translations)
+# ══════════════════════════════════════════════════
+locales:
+  zh:
+    proxy_server:
+      name: "代理服务器"
+      description: "后端代理服务器地址（host:port[/path]）"
+    proxy_token:
+      name: "代理令牌"
+      description: "代理服务器身份验证令牌"
+    proxy_socks5_user:
+      name: "SOCKS5 用户名"
+      description: "SOCKS5 代理用户名（可选）"
+    proxy_socks5_pass:
+      name: "SOCKS5 密码"
+      description: "SOCKS5 代理密码（需同时设置用户名）"
+    proxy_server_ip:
+      name: "服务器 IP"
+      description: "指定服务器 IP 地址，跳过 DNS 解析"
+    proxy_dns:
+      name: "DNS 服务器"
+      description: "用于 ECH 查询的 DoH 服务器"
+    proxy_ech_domain:
+      name: "ECH 域名"
+      description: "ECH（Encrypted Client Hello）查询域名"
+    proxy_routing:
+      name: "分流模式"
+      description: "流量分流模式：global / bypass_cn / none"
+    proxy_ipv4_file:
+      name: "IPv4 列表文件"
+      description: "自定义 IPv4 列表文件路径（留空使用默认）"
+    proxy_ipv6_file:
+      name: "IPv6 列表文件"
+      description: "自定义 IPv6 列表文件路径（留空使用默认）"
+    proxy_ipv4_url:
+      name: "IPv4 列表 URL"
+      description: "自定义 IPv4 列表下载地址（留空使用默认）"
+    proxy_ipv6_url:
+      name: "IPv6 列表 URL"
+      description: "自定义 IPv6 列表下载地址（留空使用默认）"
+    proxy_ip_auto_update:
+      name: "自动更新 IP 列表"
+      description: "每次启动时强制重新下载 IP 列表"
+    proxy_geoip_enabled:
+      name: "启用 GeoIP"
+      description: "启用 GeoIP 数据库（与 IP 列表共存）"
+    proxy_geoip_file:
+      name: "GeoIP 文件路径"
+      description: "GeoIP 数据库路径（留空使用默认）"
+    proxy_geoip_url:
+      name: "GeoIP 下载地址"
+      description: "GeoIP 数据库下载地址（留空自动获取最新版本）"
+    proxy_log_level:
+      name: "日志级别"
+      description: "日志详细程度：debug / info / warn / error"
+    proxy_log_max_mb:
+      name: "日志文件最大大小"
+      description: "单个日志文件的最大大小（MB）"
+    proxy_log_backup:
+      name: "日志备份数量"
+      description: "保留的旧日志文件数量"
+    proxy_log_compress:
+      name: "压缩旧日志"
+      description: "压缩旧日志文件以节省空间"

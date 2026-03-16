@@ -1,0 +1,83 @@
+# ══════════════════════════════════════════════════
+# ECH-Workerd - LazyCat Application Manifest
+# ECH 加密代理服务
+# ══════════════════════════════════════════════════
+
+name: ECH-Workerd
+package: community.lazycat.app.ech-workerd
+version: 0.9.5
+min_os_version: 1.3.8
+description: "ECH (Encrypted Client Hello) proxy service with SOCKS5/HTTP support"
+license: MIT
+homepage: https://github.com/ca-x/ech-workerd
+author: ECH-Workerd Team
+
+application:
+  subdomain: ech-workerd
+  background_task: true
+  public_path:
+    - /
+  # Status panel HTTP route
+  upstreams:
+    - location: /
+      backend: http://host.lzcapp:30001/
+
+services:
+  ech-workerd:
+    image: docker.1ms.run/czyt/ech-workerd:v0.9.5
+    network_mode: host
+    user: root
+    environment:
+      # ── 必填参数 ───────────────────────────────
+      - PROXY_SERVER={{.U.proxy_server}}
+
+      # ── 身份验证 ───────────────────────────────
+      - PROXY_TOKEN={{.U.proxy_token}}
+
+      # ── SOCKS5 鉴权 ───────────────────────────
+      - PROXY_SOCKS5_USER={{.U.proxy_socks5_user}}
+      - PROXY_SOCKS5_PASS={{.U.proxy_socks5_pass}}
+
+      # ── 网络配置 ───────────────────────────────
+      - PROXY_LISTEN=0.0.0.0:10808
+      - PROXY_STATUS_ADDR=0.0.0.0:30001
+      - PROXY_SERVER_IP={{.U.proxy_server_ip}}
+
+      # ── ECH 配置 ───────────────────────────────
+      - PROXY_DNS={{.U.proxy_dns}}
+      - PROXY_ECH_DOMAIN={{.U.proxy_ech_domain}}
+
+      # ── 分流配置 ───────────────────────────────
+      - PROXY_ROUTING={{.U.proxy_routing}}
+
+      # ── IP 列表配置 ───────────────────────────
+      - PROXY_IP_LIST_DIR=/app/data
+      - PROXY_IPV4_FILE={{.U.proxy_ipv4_file}}
+      - PROXY_IPV6_FILE={{.U.proxy_ipv6_file}}
+      - PROXY_IPV4_URL={{.U.proxy_ipv4_url}}
+      - PROXY_IPV6_URL={{.U.proxy_ipv6_url}}
+      - PROXY_IP_AUTO_UPDATE={{.U.proxy_ip_auto_update}}
+
+      # ── GeoIP 数据库配置 ─────────────────────
+      - PROXY_GEOIP_FILE={{.U.proxy_geoip_file}}
+      - PROXY_GEOIP_URL={{.U.proxy_geoip_url}}
+      - PROXY_GEOIP_ENABLED={{.U.proxy_geoip_enabled}}
+
+      # ── 日志配置 ───────────────────────────────
+      - PROXY_LOG_LEVEL={{.U.proxy_log_level}}
+      - PROXY_LOG_FILE=/app/logs/proxy.log
+      - PROXY_LOG_MAX_MB={{.U.proxy_log_max_mb}}
+      - PROXY_LOG_BACKUP={{.U.proxy_log_backup}}
+      - PROXY_LOG_COMPRESS={{.U.proxy_log_compress}}
+
+    binds:
+      - /lzcapp/var/logs:/app/logs
+      - /lzcapp/var/data:/app/data
+
+locales:
+  en:
+    name: "ECH Workerd"
+    description: "ECH (Encrypted Client Hello) proxy service with SOCKS5/HTTP support for secure and private connections"
+  zh:
+    name: "ECH Workerd"
+    description: "支持 ECH (Encrypted Client Hello) 的加密代理服务，提供 SOCKS5/HTTP 代理，保障连接安全与隐私"
