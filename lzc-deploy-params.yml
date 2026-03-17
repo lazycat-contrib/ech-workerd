@@ -25,6 +25,16 @@ params:
     optional: true
 
   # ══════════════════════════════════════════════
+  # 安全配置
+  # ══════════════════════════════════════════════
+  - id: proxy_pin
+    type: string
+    name: "Admin Panel PIN"
+    description: "PIN code for admin panel (4-32 chars, required to modify config after setup)"
+    default_value: "12345"
+    optional: true
+
+  # ══════════════════════════════════════════════
   # SOCKS5 鉴权
   # ══════════════════════════════════════════════
   - id: proxy_socks5_user
@@ -185,6 +195,9 @@ locales:
     proxy_token:
       name: "代理令牌"
       description: "代理服务器身份验证令牌"
+    proxy_pin:
+      name: "管理面板 PIN 码"
+      description: "管理面板 PIN 码（4-32 字符，设置后需验证才能修改配置）"
     proxy_socks5_user:
       name: "SOCKS5 用户名"
       description: "SOCKS5 代理用户名（可选）"
