@@ -11,7 +11,7 @@ params:
     name: "Proxy Server"
     description: "Backend proxy server address (host:port[/path])"
     default_value: ""
-    optional: false
+    optional: true
     placeholder: "example.com:443"
 
   # ══════════════════════════════════════════════
@@ -32,7 +32,6 @@ params:
     name: "Admin Panel PIN"
     description: "PIN code for admin panel (4-32 chars, required to modify config after setup)"
     default_value: "12345"
-    optional: true
 
   # ══════════════════════════════════════════════
   # SOCKS5 鉴权
