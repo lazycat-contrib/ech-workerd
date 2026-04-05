@@ -1,0 +1,25 @@
+# ══════════════════════════════════════════════════
+# ECH-Workerd - Package Metadata (LPK v2)
+# 静态包元数据
+# ══════════════════════════════════════════════════
+
+package: community.lazycat.app.ech-workerd
+version: 1.2.7
+name: ECH-Workerd
+description: "ECH (Encrypted Client Hello) proxy service with SOCKS5/HTTP support"
+license: MIT
+homepage: https://github.com/ca-x/ech-workerd
+author: ECH-Workerd Team
+min_os_version: 1.5.0
+
+locales:
+  en:
+    name: "ECH Workerd"
+    description: "ECH (Encrypted Client Hello) proxy service with SOCKS5/HTTP support for secure and private connections"
+  zh:
+    name: "ECH Workerd"
+    description: "支持 ECH (Encrypted Client Hello) 的加密代理服务，提供 SOCKS5/HTTP 代理，保障连接安全与隐私"
+
+permissions:
+  required:
+    - net.internet
