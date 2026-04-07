@@ -14,7 +14,7 @@ application:
 
 services:
   ech-workerd:
-    image: docker.1ms.run/czyt/ech-workerd:v1.2.7
+    image: docker.1ms.run/czyt/ech-workerd:v1.2.8
     network_mode: host
     user: root
     environment:
