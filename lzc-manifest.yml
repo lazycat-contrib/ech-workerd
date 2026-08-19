@@ -11,9 +11,9 @@ application:
   upstreams:
     - location: /
       backend: http://host.lzcapp:30001/
-
 services:
   ech-workerd:
+    # upstream: docker.io/czyt/ech-workerd:v1.2.15
     image: docker.1ms.run/czyt/ech-workerd:v1.2.15
     network_mode: host
     user: root
