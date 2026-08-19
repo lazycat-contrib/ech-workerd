@@ -1,0 +1,41 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/ech-workerd.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: ech-workerd
+
+build:
+  run_buildscript: false
+
+images:
+  - id: ech-workerd
+    target: service
+    service: ech-workerd
+    source: docker.io/czyt/ech-workerd
+    channel: stable
+    sort: semver
+    tag_regex: '^v?[0-9]+\.[0-9]+\.[0-9]+$'
+    delivery:
+      mode: mirror
+      image_template: docker.1ms.run/czyt/ech-workerd:{tag}
+      require_digest_match: true
+
+stores:
+  official:
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: "ECH-Workerd"
+    summary: "ECH encrypted client hello proxy service"
+

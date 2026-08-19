@@ -12,7 +12,6 @@ params:
     description: "Backend proxy server address (host:port[/path])"
     default_value: ""
     optional: true
-    placeholder: "example.com:443"
 
   # ══════════════════════════════════════════════
   # 身份验证
@@ -96,7 +95,6 @@ params:
     description: "Custom IPv4 list file path (leave empty for default)"
     default_value: ""
     optional: true
-    placeholder: "/app/data/ipv4.txt"
 
   - id: proxy_ipv6_file
     type: string
@@ -104,7 +102,6 @@ params:
     description: "Custom IPv6 list file path (leave empty for default)"
     default_value: ""
     optional: true
-    placeholder: "/app/data/ipv6.txt"
 
   - id: proxy_ipv4_url
     type: string
@@ -143,7 +140,6 @@ params:
     description: "GeoIP database path (leave empty for default)"
     default_value: ""
     optional: true
-    placeholder: "/app/data/GeoLite2-City.mmdb"
 
   - id: proxy_geoip_url
     type: string
